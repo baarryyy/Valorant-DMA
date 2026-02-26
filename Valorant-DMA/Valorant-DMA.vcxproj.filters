@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Core">
+      <UniqueIdentifier>{a1b2c3d4-0001-0001-0001-000000000001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\DMA">
+      <UniqueIdentifier>{a1b2c3d4-0002-0002-0002-000000000002}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Game">
+      <UniqueIdentifier>{a1b2c3d4-0003-0003-0003-000000000003}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Combat">
+      <UniqueIdentifier>{a1b2c3d4-0004-0004-0004-000000000004}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Render">
+      <UniqueIdentifier>{a1b2c3d4-0005-0005-0005-000000000005}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Input">
+      <UniqueIdentifier>{a1b2c3d4-0006-0006-0006-000000000006}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Misc">
+      <UniqueIdentifier>{a1b2c3d4-0007-0007-0007-000000000007}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\imgui">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty\spdlog">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD03}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Core -->
+    <ClInclude Include="Source\Core\Application.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Config.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Logger.h">
+      <Filter>Source\Core</Filter>
+    </ClInclude>
+    <!-- DMA -->
+    <ClInclude Include="Source\DMA\DMADevice.h">
+      <Filter>Source\DMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DMA\ProcessContext.h">
+      <Filter>Source\DMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DMA\MemoryReader.h">
+      <Filter>Source\DMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DMA\KeyboardReader.h">
+      <Filter>Source\DMA</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\DMA\Registry.h">
+      <Filter>Source\DMA</Filter>
+    </ClInclude>
+    <!-- Game -->
+    <ClInclude Include="Source\Game\Offsets.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\Decrypt.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\GameState.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\EntityCache.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Game\PlayerData.h">
+      <Filter>Source\Game</Filter>
+    </ClInclude>
+    <!-- Combat -->
+    <ClInclude Include="Source\Combat\Aimbot.h">
+      <Filter>Source\Combat</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Combat\TargetSelector.h">
+      <Filter>Source\Combat</Filter>
+    </ClInclude>
+    <!-- Render -->
+    <ClInclude Include="Source\Render\Overlay.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\ESP.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Math.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Menu.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Style.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Render\Font.h">
+      <Filter>Source\Render</Filter>
+    </ClInclude>
+    <!-- Input -->
+    <ClInclude Include="Source\Input\InputDevice.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\KMBoxSerial.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Input\KMBoxNet.h">
+      <Filter>Source\Input</Filter>
+    </ClInclude>
+    <!-- Misc -->
+    <ClInclude Include="Source\Misc\Pch.h">
+      <Filter>Source\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Misc\Types.h">
+      <Filter>Source\Misc</Filter>
+    </ClInclude>
+    <!-- Third-party: imgui -->
+    <ClInclude Include="Includes\imgui\FontAwesome5.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\fontawesome_ttf.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imconfig.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imgui.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imgui_impl_dx11.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imgui_impl_win32.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imgui_internal.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imstb_rectpack.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imstb_textedit.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\imgui\imstb_truetype.h">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClInclude>
+    <!-- Third-party: other -->
+    <ClInclude Include="Includes\leechcore.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes\vmmdll.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Core -->
+    <ClCompile Include="Source\Core\Application.cpp">
+      <Filter>Source\Core</Filter>
+    </ClCompile>
+    <!-- DMA -->
+    <ClCompile Include="Source\DMA\DMADevice.cpp">
+      <Filter>Source\DMA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DMA\ProcessContext.cpp">
+      <Filter>Source\DMA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DMA\MemoryReader.cpp">
+      <Filter>Source\DMA</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\DMA\KeyboardReader.cpp">
+      <Filter>Source\DMA</Filter>
+    </ClCompile>
+    <!-- Game -->
+    <ClCompile Include="Source\Game\Decrypt.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\GameState.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Game\EntityCache.cpp">
+      <Filter>Source\Game</Filter>
+    </ClCompile>
+    <!-- Combat -->
+    <ClCompile Include="Source\Combat\Aimbot.cpp">
+      <Filter>Source\Combat</Filter>
+    </ClCompile>
+    <!-- Render -->
+    <ClCompile Include="Source\Render\Overlay.cpp">
+      <Filter>Source\Render</Filter>
+    </ClCompile>
+    <!-- Input -->
+    <ClCompile Include="Source\Input\KMBoxSerial.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Input\KMBoxNet.cpp">
+      <Filter>Source\Input</Filter>
+    </ClCompile>
+    <!-- Entry point -->
+    <ClCompile Include="Source\NewMain.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <!-- PCH -->
+    <ClCompile Include="Source\Misc\Pch.cpp">
+      <Filter>Source\Misc</Filter>
+    </ClCompile>
+    <!-- Third-party: imgui -->
+    <ClCompile Include="Includes\imgui\imgui.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\imgui\imgui_draw.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\imgui\imgui_impl_dx11.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\imgui\imgui_impl_win32.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\imgui\imgui_tables.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Includes\imgui\imgui_widgets.cpp">
+      <Filter>ThirdParty\imgui</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Includes\imgui\FontAwesome.ttf">
+      <Filter>ThirdParty\imgui</Filter>
+    </Font>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Libs\Readme.md" />
+  </ItemGroup>
+</Project>
