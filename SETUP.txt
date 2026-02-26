@@ -1,0 +1,244 @@
+================================================================================
+                        VALORANT DMA - SETUP GUIDE
+================================================================================
+
+This guide walks you through everything needed before launching the tool.
+Follow each section in order.
+
+
+================================================================================
+  1. WHAT YOU NEED
+================================================================================
+
+  SECOND PC (the one running this tool):
+    - Windows 10 or 11 (64-bit)
+    - Any GPU with DirectX 11 support
+    - USB 3.0 port for the FPGA card
+
+  FPGA DMA CARD (plugged into target PC):
+    - Supported cards: Squirrel, Enigma X1, CaptainDMA 75T/35T, etc.
+    - Must be seated in a PCIe slot on the target machine
+    - Connected to the second PC via USB cable
+
+  KMBOX (optional - only needed for aimbot):
+    - KMBox B+  (connects via USB serial to second PC)
+    - KMBox .NET (connects via your local network)
+    - If you only want ESP visuals, you do not need a KMBox
+
+  TARGET PC:
+    - Valorant installed and running
+
+
+================================================================================
+  2. DOWNLOAD DEPENDENCIES
+================================================================================
+
+  You need three sets of files from external sources.
+
+  A) MemProcFS (provides vmm.dll, leechcore.dll, vmmdll.lib, leechcore.lib)
+     -----------------------------------------------------------------------
+     Download the latest release from:
+       https://github.com/ufrisk/MemProcFS/releases
+
+     From the release zip you need:
+       vmm.dll            -> place next to your built .exe
+       leechcore.dll      -> place next to your built .exe
+       info.db            -> place next to your built .exe
+       vmmdll.lib         -> place in Valorant-DMA/Libs/
+       leechcore.lib      -> place in Valorant-DMA/Libs/
+
+  B) FTDI D3XX Driver (provides FTD3XX.dll and FTD3XX.lib)
+     ------------------------------------------------------
+     Download from:
+       https://ftdichip.com/drivers/d3xx-drivers/
+
+     From the SDK you need:
+       FTD3XX.dll          -> place next to your built .exe
+       FTD3XX.lib          -> place in Valorant-DMA/Libs/
+
+  C) FPGA Firmware (if not already flashed)
+     ----------------------------------------
+     Your DMA card should already have firmware loaded. If the tool
+     prints "Failed to initialize DMA device", you may need to reflash.
+     Refer to your card manufacturer's instructions.
+
+
+================================================================================
+  3. FOLDER LAYOUT BEFORE BUILDING
+================================================================================
+
+  After placing the .lib files, your Libs folder should look like this:
+
+    Valorant-DMA/
+    └── Valorant-DMA/
+        └── Libs/
+            ├── vmmdll.lib
+            ├── leechcore.lib
+            └── FTD3XX.lib
+
+
+================================================================================
+  4. BUILD THE PROJECT
+================================================================================
+
+  1. Open Valorant-DMA.sln in Visual Studio 2022
+  2. Set configuration to:  Release | x64
+  3. Press Ctrl+Shift+B to build
+  4. The .exe will be in:  x64/Release/Valorant-DMA.exe
+
+
+================================================================================
+  5. PREPARE THE RUNTIME FOLDER
+================================================================================
+
+  Copy the runtime DLLs next to your built .exe. Your folder should look
+  like this before launching:
+
+    x64/Release/
+    ├── Valorant-DMA.exe
+    ├── vmm.dll
+    ├── leechcore.dll
+    ├── FTD3XX.dll
+    └── info.db
+
+  If any of these files are missing, the tool will print
+  "Failed to load DMA libraries" and exit.
+
+
+================================================================================
+  6. CREATE YOUR CONFIG (OPTIONAL)
+================================================================================
+
+  The tool auto-generates defaults on first run, but you can create
+  config.txt in the same folder as the .exe to pre-configure settings.
+
+  The most important setting is your TARGET MONITOR RESOLUTION.
+  If the target PC runs at 2560x1440, set width/height to match:
+
+    {
+        "width": 2560,
+        "height": 1440,
+        "aimbot": {
+            "enable": false,
+            "smoothness": 5,
+            "deadzone": 0,
+            "fov": 100,
+            "showFov": false,
+            "aimKey1": 0,
+            "aimKey2": 0
+        },
+        "kmbox": {
+            "useSerial": false,
+            "useNet": false,
+            "baudrate": 115200,
+            "ip": "",
+            "port": "",
+            "uuid": ""
+        },
+        "visuals": {
+            "box": false,
+            "lines": false,
+            "health": false
+        },
+        "misc": {
+            "transparent": false
+        }
+    }
+
+  If you skip this step, the tool defaults to 1920x1080.
+
+
+================================================================================
+  7. KMBOX SETUP (SKIP IF YOU ONLY WANT ESP)
+================================================================================
+
+  The tool tries to auto-connect on startup. It checks .NET first,
+  then falls back to serial. You can also connect manually from the menu.
+
+  KMBOX B+ (Serial):
+  ------------------
+    1. Plug the KMBox B+ into the second PC via USB
+    2. Install CH340 drivers if Windows doesn't recognize it
+    3. The tool auto-detects the "USB-SERIAL CH340" COM port
+    4. Default baud rate is 115200 (change in config if yours differs)
+
+  KMBOX .NET (Network):
+  ---------------------
+    1. Connect the KMBox .NET to your router/switch
+    2. Note down the device's IP address, port, and UUID
+    3. Either:
+       a. Pre-fill the kmbox section in config.txt before launching, or
+       b. Enter them in the menu: Misc tab > Select KMBox type > KMBox .NET
+
+
+================================================================================
+  8. PRE-LAUNCH CHECKLIST
+================================================================================
+
+    [ ] FPGA card seated in target PC's PCIe slot
+    [ ] USB cable connected from FPGA card to second PC
+    [ ] FTDI drivers installed on second PC
+    [ ] vmm.dll, leechcore.dll, FTD3XX.dll, info.db next to .exe
+    [ ] config.txt width/height matches target monitor (or use defaults)
+    [ ] Valorant is running on the target PC
+    [ ] KMBox plugged in (if using aimbot)
+
+
+================================================================================
+  9. LAUNCHING
+================================================================================
+
+    1. Make sure Valorant is open on the target PC
+    2. Run Valorant-DMA.exe on the second PC
+    3. Wait for the console to show "Application initialized successfully"
+    4. The overlay window will appear on your second PC monitor
+    5. Press INSERT to open/close the settings menu
+
+  First launch takes a few extra seconds while it dumps the memory map.
+  Subsequent launches reuse the cached map from %TEMP%\mmap.txt.
+
+  If you need to regenerate the memory map (e.g. after a target PC reboot),
+  delete %TEMP%\mmap.txt before launching.
+
+
+================================================================================
+  10. WHAT THE CONSOLE OUTPUT MEANS
+================================================================================
+
+  Normal startup sequence:
+
+    [HH:MM:SS] [info] Starting application...
+    [HH:MM:SS] [info] Memory map dumped successfully        <- first run only
+    [HH:MM:SS] [info] DMA initialized (FPGA ID: X, Device ID: Y)
+    [HH:MM:SS] [info] FPGA PCIe register auto-cleared
+    [HH:MM:SS] [info] Attached to Valorant-Win64-Shipping.exe (PID: ...)
+    [HH:MM:SS] [info] CR3/DTB patched successfully          <- if needed
+    [HH:MM:SS] [info] gafAsyncKeyState found at: 0x...
+    [HH:MM:SS] [info] Overlay initialized (1920x1080 @ 60Hz)
+    [HH:MM:SS] [info] KMBox .NET connected                  <- or B+ or warning
+    [HH:MM:SS] [info] Application initialized successfully
+
+  Warning messages (non-fatal):
+
+    "Keyboard init failed"     -> aim keys won't work, ESP still works
+    "No KMBox device found"    -> aimbot disabled, ESP still works
+
+  Error messages (fatal - tool will exit):
+
+    "Failed to load DMA libraries"     -> DLLs missing from .exe folder
+    "Failed to initialize DMA device"  -> FPGA not connected or drivers missing
+    "Failed to attach to process"      -> Valorant not running on target
+    "Failed to initialize overlay"     -> DirectX 11 / GPU issue
+
+
+================================================================================
+  11. AFTER LAUNCHING
+================================================================================
+
+    - Press INSERT to toggle the menu
+    - Enable features in the Aimbot / Visuals / Misc tabs
+    - Click "Save Config" in the Misc tab to persist your settings
+    - To exit, click "Close" in the Misc tab or close the overlay window
+
+  If offsets are outdated after a Valorant patch, ESP positions will be
+  wrong or players won't appear. Update Source/Game/Offsets.h and rebuild.
