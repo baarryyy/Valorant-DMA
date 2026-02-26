@@ -90,7 +90,7 @@ struct alignas(16) FTransform {
         float rx = XMVectorGetX(rot), ry = XMVectorGetY(rot);
         float rz = XMVectorGetZ(rot), rw = XMVectorGetW(rot);
         float lenSq = rx * rx + ry * ry + rz * rz + rw * rw;
-        if (std::fabsf(lenSq - 1.0f) > 0.001f) return false;
+        if (std::fabs(lenSq - 1.0f) > 0.001f) return false;
 
         float sx = XMVectorGetX(scale), sy = XMVectorGetY(scale), sz = XMVectorGetZ(scale);
         if (sx <= 0.0f || sy <= 0.0f || sz <= 0.0f) return false;
