@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>C:\Users\asdf\Documents\Valorant-DMA\Valorant-DMA\Valorant-DMA\Source\Misc\Pch;C:\Users\asdf\Documents\Valorant-DMA\Valorant-DMA\Valorant-DMA\Source\Dma;C:\Users\asdf\Documents\Valorant-DMA\Valorant-DMA\Valorant-DMA\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\asdf\Documents\Valorant-DMA\Valorant-DMA\Valorant-DMA\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(ProjectDir)Source;$(ProjectDir)Source\Misc;$(ProjectDir)Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -123,8 +123,9 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <PrecompiledHeader>Create</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>Pch.h</PrecompiledHeaderFile>
+      <ForcedIncludeFiles>Pch.h</ForcedIncludeFiles>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -250,26 +251,39 @@
     <ClInclude Include="Includes\spdlog\tweakme.h" />
     <ClInclude Include="Includes\spdlog\version.h" />
     <ClInclude Include="Includes\vmmdll.h" />
-    <ClInclude Include="Source\Dma\InputManager.h" />
-    <ClInclude Include="Source\Dma\Memory.h" />
-    <ClInclude Include="Source\Dma\Registry.h" />
-    <ClInclude Include="Source\Dma\Shellcode.h" />
-    <ClInclude Include="Source\Game\Core.h" />
-    <ClInclude Include="Source\Game\Entity\Combat\Aimbot.h" />
-    <ClInclude Include="Source\Game\Entity\Cache.h" />
-    <ClInclude Include="Source\Game\sdk.hpp" />
-    <ClInclude Include="Source\Game\structs.hpp" />
-    <ClInclude Include="Source\Kmbox\HidTable.h" />
-    <ClInclude Include="Source\Kmbox\kmbox.hpp" />
-    <ClInclude Include="Source\Kmbox\kmboxNet.h" />
-    <ClInclude Include="Source\Kmbox\manager.hpp" />
-    <ClInclude Include="Source\nt\structs.h" />
-    <ClInclude Include="Source\Misc\Pch\Pch.h" />
-    <ClInclude Include="Source\Render\Config.hpp" />
-    <ClInclude Include="Source\Render\CustomUI.hpp" />
+    <!-- Core -->
+    <ClInclude Include="Source\Core\Application.h" />
+    <ClInclude Include="Source\Core\Config.h" />
+    <ClInclude Include="Source\Core\Logger.h" />
+    <!-- DMA -->
+    <ClInclude Include="Source\DMA\DMADevice.h" />
+    <ClInclude Include="Source\DMA\ProcessContext.h" />
+    <ClInclude Include="Source\DMA\MemoryReader.h" />
+    <ClInclude Include="Source\DMA\KeyboardReader.h" />
+    <ClInclude Include="Source\DMA\Registry.h" />
+    <!-- Game -->
+    <ClInclude Include="Source\Game\Offsets.h" />
+    <ClInclude Include="Source\Game\Decrypt.h" />
+    <ClInclude Include="Source\Game\GameState.h" />
+    <ClInclude Include="Source\Game\EntityCache.h" />
+    <ClInclude Include="Source\Game\PlayerData.h" />
+    <!-- Combat -->
+    <ClInclude Include="Source\Combat\Aimbot.h" />
+    <ClInclude Include="Source\Combat\TargetSelector.h" />
+    <!-- Render -->
+    <ClInclude Include="Source\Render\Overlay.h" />
+    <ClInclude Include="Source\Render\ESP.h" />
+    <ClInclude Include="Source\Render\Math.h" />
+    <ClInclude Include="Source\Render\Menu.h" />
+    <ClInclude Include="Source\Render\Style.h" />
     <ClInclude Include="Source\Render\Font.h" />
-    <ClInclude Include="Source\Render\RenderMenu.hpp" />
-    <ClInclude Include="Source\Settings.hpp" />
+    <!-- Input -->
+    <ClInclude Include="Source\Input\InputDevice.h" />
+    <ClInclude Include="Source\Input\KMBoxSerial.h" />
+    <ClInclude Include="Source\Input\KMBoxNet.h" />
+    <!-- Misc -->
+    <ClInclude Include="Source\Misc\Pch.h" />
+    <ClInclude Include="Source\Misc\Types.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Includes\imgui\imgui.cpp">
@@ -290,19 +304,31 @@
     <ClCompile Include="Includes\imgui\imgui_widgets.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Dma\InputManager.cpp" />
-    <ClCompile Include="Source\Dma\Memory.cpp" />
-    <ClCompile Include="Source\Dma\Registry.cpp" />
-    <ClCompile Include="Source\Dma\Shellcode.cpp" />
-    <ClCompile Include="Source\Game\Core.cpp" />
-    <ClCompile Include="Source\Game\Entity\Cache.cpp" />
-    <ClCompile Include="Source\Game\Entity\Combat\Aimbot.cpp" />
-    <ClCompile Include="Source\Kmbox\kmboxNet.cpp">
+    <!-- Core -->
+    <ClCompile Include="Source\Core\Application.cpp" />
+    <!-- DMA -->
+    <ClCompile Include="Source\DMA\DMADevice.cpp" />
+    <ClCompile Include="Source\DMA\ProcessContext.cpp" />
+    <ClCompile Include="Source\DMA\MemoryReader.cpp" />
+    <ClCompile Include="Source\DMA\KeyboardReader.cpp" />
+    <!-- Game -->
+    <ClCompile Include="Source\Game\Decrypt.cpp" />
+    <ClCompile Include="Source\Game\GameState.cpp" />
+    <ClCompile Include="Source\Game\EntityCache.cpp" />
+    <!-- Combat -->
+    <ClCompile Include="Source\Combat\Aimbot.cpp" />
+    <!-- Render -->
+    <ClCompile Include="Source\Render\Overlay.cpp" />
+    <!-- Input -->
+    <ClCompile Include="Source\Input\KMBoxSerial.cpp" />
+    <ClCompile Include="Source\Input\KMBoxNet.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Source\Main.cpp" />
-    <ClCompile Include="Source\Misc\Pch\Pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
+    <!-- Entry point -->
+    <ClCompile Include="Source\NewMain.cpp" />
+    <!-- PCH -->
+    <ClCompile Include="Source\Misc\Pch.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
